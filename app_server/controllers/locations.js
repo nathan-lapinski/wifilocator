@@ -1,6 +1,12 @@
 /* GET 'home' page */
 module.exports.homelist = function(req,res){
-	res.render('locations-list', {title: 'Home'});
+	res.render('locations-list', {
+		title: 'WiFiLocator',
+		pageHeader: {
+			title: 'WiFiLocator',
+			strapline: 'Find coffee shops with wifi near you!'
+		}
+	});
 };
 
 /* GET 'Location info' page */
