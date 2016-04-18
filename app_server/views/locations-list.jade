@@ -1,65 +1,27 @@
+
 extends layout
+
+include _includes/sharedHTMLfunctions
 
 block content
   #banner.page-header
     .row
       .col-lg-6
         h1= pageHeader.title
-          small &nbsp;#{pageHeader.strapline}
+         small &nbsp;#{pageHeader.strapline}
   .row
     .col-xs-12.col-sm-8
       .row.list-group
-        .col-xs-12.list-group-item
-          h4
-            a(href="/location") Ozo Coffee
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star-empty
-              span.glyphicon.glyphicon-star-empty
-            span.badge.pull-right.badge-default 100m
-          p.address 1015 Pearl Street, Boulder, CO
-          p
-            span.label.label-warning Hot drinks
-            |  &nbsp;
-            span.label.label-warning Food
-            | &nbsp
-            span.label.label-warning Slow wifi
-            | &nbsp
-      .row.list-group
-        .col-xs-12.list-group-item
-          h4
-            a(href="/location") Boxcar Coffee
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-            span.badge.pull-right.badge-default 100m
-          p.address 1015 Pearl Street, Boulder, CO
-          p
-            span.label.label-warning Hot drinks
-            |  &nbsp;
-            span.label.label-warning Food
-            | &nbsp
-            span.label.label-warning Slow wifi
-            | &nbsp
-      .row.list-group
-        .col-xs-12.list-group-item
-          h4
-            a(href="/location") Amante Coffee
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-            span.badge.pull-right.badge-default 100m
-          p.address 1015 Pearl Street, Boulder, CO
-          p
-            span.label.label-warning Hot drinks
-            |  &nbsp;
-            span.label.label-warning Food
-            | &nbsp
-            span.label.label-warning Slow wifi
-            | &nbsp
+        each location in locations
+          .col-xs-12.list-group-item
+            h4 
+              a(href="/location")= location.name
+              small &nbsp;
+                +outputRating(location.rating)
+              span.badge.pull-right.badge-default= location.distance
+            p.address= location.address
+            p
+              each facility in location.facilities
+                span.label.label-warning= facility
+                &nbsp;
     .col-xs-12.col-sm-4 
-      p.lead WIFILocator helps students and other people in Boulder CO discover the best wifi hot spots in town. Perfect for those study sessions and startup ideas.
